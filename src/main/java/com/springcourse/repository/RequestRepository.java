@@ -1,4 +1,4 @@
-package com.springcourserepository;
+package com.springcourse.repository;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface RequestRepository extends JpaRepository<Request, Long>{
 
 	public List<Request> findAllByOwnerId(Long id);
 	
-	@Query("UPDATE Request SET stat = ?2 where id = ?1")
+	@Query("UPDATE request SET state = ?2 where id = ?1")
 	public Request updateStatus(Long id, RequestState state);
 	
 }
