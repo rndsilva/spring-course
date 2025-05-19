@@ -3,7 +3,10 @@ package com.springcourse.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.springcourse.domain.Request;
 import com.springcourse.domain.User;
+import com.springcourse.enums.RequestState;
 import com.springcourse.enums.Role;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,12 +25,15 @@ public class UserRepositoryTests {
 	
 	@Test
 	@Order(1)
-	public void AsaveTest() {
+	public void saveTest() {
 		User user = new User(null, "Kevin", "kevin.wingi@gmail.com", "123", Role.ADMINISTRATOR, null, null);
 		User createdUSer = userRepository.save(user);
 		
 		assertThat(createdUSer.getId()).isEqualTo(1L);
 	}
+	
+
+	
 	
 	@Test
 	@Order(2)
