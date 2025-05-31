@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.springcourse.enums.Role;
 
 import jakarta.persistence.Column;
@@ -38,7 +40,7 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	
+	//@Getter(onMethod = @__({JsonIgnore}))
 	@OneToMany(mappedBy = "owner")
 	private List<Request> requests = new ArrayList<Request>();
 	
@@ -71,6 +73,8 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	public String getPassword() {
 		return password;
 	}
@@ -87,6 +91,7 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+	@JsonIgnore
 	public List<Request> getRequests() {
 		return requests;
 	}
@@ -95,10 +100,12 @@ public class User implements Serializable {
 		this.requests = requests;
 	}
 
+	@JsonIgnore
 	public List<RequestStage> getStages() {
 		return stages;
 	}
 
+	
 	public void setStages(List<RequestStage> stages) {
 		this.stages = stages;
 	}
