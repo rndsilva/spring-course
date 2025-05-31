@@ -60,8 +60,8 @@ public class RequestResource {
 		return ResponseEntity.ok(requests);
 	}
 	
-	http://localhost:8080/requests/1/request-stage
-	@GetMapping("/{id}/request-stage")
+	//http://localhost:8080/requests/1/request-stage
+	@GetMapping("/{id}/request-stages")
 	public ResponseEntity<List<RequestStage>> listAllStagesById(@PathVariable(name  = "id") Long id){
 		List<RequestStage> stages = stageService.listAllByRequestId(id);
 		return ResponseEntity.ok(stages);
