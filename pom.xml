@@ -32,16 +32,16 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>		
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-		</dependency>	
+		</dependency>
 
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -60,6 +60,13 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 	</dependencies>
+
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.30</version> <!-- versão atual estável -->
+		<scope>provided</scope>
+	</dependency>
 
 	<build>
 		<plugins>
