@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springcourse.enums.RequestState;
 
 import jakarta.persistence.Column;
@@ -103,6 +104,7 @@ public class Request implements Serializable {
 		this.owner = owner;
 	}
 
+	@JsonIgnore
 	public List<RequestStage> getStages() {
 		return stages;
 	}
