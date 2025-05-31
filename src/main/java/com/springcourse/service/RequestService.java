@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import com.springcourse.domain.Request;
 import com.springcourse.enums.RequestState;
+import com.springcourse.exception.NotFoundException;
 import com.springcourse.repository.RequestRepository;
 
 @Service
@@ -32,7 +33,7 @@ public class RequestService {
 	//get
 	public Request getById(Long id) {
 		Optional<Request> result = requestRepository.findById(id);
-		return result.get();
+		return result.orElseThrow(()-> new NotFoundException("There are not request with id = " + id));
 	}
 	
 	//list
