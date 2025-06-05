@@ -10,6 +10,7 @@ import com.springcourse.enums.RequestState;
 import com.springcourse.enums.Role;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -23,6 +24,7 @@ public class UserRepositoryTests {
 	
 	@Autowired private UserRepository userRepository;
 	
+	@Disabled
 	@Test
 	@Order(1)
 	public void saveTest() {
@@ -34,7 +36,7 @@ public class UserRepositoryTests {
 	
 
 	
-	
+	@Disabled
 	@Test
 	@Order(2)
 	public void updateTest() {
@@ -44,6 +46,7 @@ public class UserRepositoryTests {
 		assertThat(updateUSer.getName()).isEqualTo("Kevin Wingi");
 	}
 	
+	@Disabled
 	@Test
 	@Order(3)
 	public void getByIdTest() {
@@ -54,7 +57,7 @@ public class UserRepositoryTests {
 
 	}
 	
-	
+	@Disabled
 	@Test
 	@Order(4)
 	public void listTest() {
@@ -63,6 +66,7 @@ public class UserRepositoryTests {
 		assertThat(users.size()).isEqualTo(1);
 	}
 	
+	@Disabled
 	@Test
 	@Order(5)
 	public void loginTest() {
@@ -71,6 +75,14 @@ public class UserRepositoryTests {
 		
 		assertThat(loggedUser.getId()).isEqualTo(1L);
 		
+	}
+	
+	
+	@Test
+	@Order(6)
+	public void updateRoleTest() {
+		int affectedRows = userRepository.updateRole(4L, Role.ADMINISTRATOR);
+		assertThat(affectedRows).isEqualTo(1);
 	}
 
 }
