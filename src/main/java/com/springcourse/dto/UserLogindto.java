@@ -1,9 +1,19 @@
 package com.springcourse.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class UserLogindto {
+	
+
+	@Email(message = "Invalid email adress")
 	private String email;
+	
+	@NotBlank
 	private String password;
+	
+
+	
 	public String getEmail() {
 		return email;
 	}
