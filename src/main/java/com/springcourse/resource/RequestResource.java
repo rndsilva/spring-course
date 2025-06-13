@@ -1,7 +1,5 @@
 package com.springcourse.resource;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springcourse.domain.Request;
 import com.springcourse.domain.RequestStage;
-import com.springcourse.domain.User;
+import com.springcourse.dto.RequestSavedto;
+import com.springcourse.dto.RequestUpdatedto;
 import com.springcourse.model.PageModel;
 import com.springcourse.model.PageRequestModel;
 import com.springcourse.service.RequestService;
 import com.springcourse.service.RequestStageService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,7 +34,11 @@ public class RequestResource {
 	
 	//save
 	@PostMapping
-	public ResponseEntity<Request> save(@RequestBody Request request){
+	public ResponseEntity<Request> save(@RequestBody @Valid RequestSavedto requestdto){
+		
+		Request request = requestdto.transformToRequest();
+		
+		
 		Request createdRequest = requestService.save(request);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdRequest);
 	}
@@ -41,7 +46,9 @@ public class RequestResource {
 	
 	//update
 	@PutMapping("/{id}")
-	public ResponseEntity<Request> update(@PathVariable(name  = "id") Long id, @RequestBody Request request){
+	public ResponseEntity<Request> update(@PathVariable(name  = "id") Long id, @RequestBody @Valid RequestUpdatedto requestdto){
+		
+		Request request = requestdto.transformToRequest();
 		
 		request.setId(id);
 		
