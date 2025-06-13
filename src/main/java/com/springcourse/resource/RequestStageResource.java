@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springcourse.domain.RequestStage;
+import com.springcourse.dto.RequestStageSavedto;
 import com.springcourse.service.RequestStageService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +25,10 @@ public class RequestStageResource {
 	
 	//save
 	@PostMapping
-	public ResponseEntity<RequestStage> save(@RequestBody RequestStage requestStage){
-		RequestStage createdRequestStage = stageService.save(requestStage);
+	public ResponseEntity<RequestStage> save(@RequestBody @Valid RequestStageSavedto requestStageSavedto){
+		RequestStage requestStage = requestStageSavedto.transformeToRequestStage();
 		
+		RequestStage createdRequestStage = stageService.save(requestStage);		
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdRequestStage);
 	}
